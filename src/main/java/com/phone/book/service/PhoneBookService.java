@@ -32,11 +32,14 @@ public interface PhoneBookService {
 	public void viewContactDetails(int id);
 
 
-	public void deleteContacts(int id);
 
-	public void deleteMyAccount(User user);
 	
 	public void loginlogic(User user);
+
+	public void saveOrUpdate(int id);
+
+	public void saveOrUpdate(OtpDetails otpDetails);
+
 
 	
 

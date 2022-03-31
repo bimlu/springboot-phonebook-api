@@ -6,6 +6,7 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -58,8 +59,7 @@ public class PhoneBookServiceImpl implements PhoneBookService, UserDetailsServic
 		 Random rnd = new Random();
 		    int number = rnd.nextInt(999999);
 
-		    // this will convert any number sequence into 6 character.
-		 System.out.println("OTP is : "+String.format("%06d", number)); 
+		 System.out.println("OTP in service: "+String.format("%06d", number)); 
 		 String otp=String.format("%06d", number);
 		 return otp;
 		
@@ -83,7 +83,6 @@ public class PhoneBookServiceImpl implements PhoneBookService, UserDetailsServic
 	@Override
 	public void check() {
 		User user =new User();
-		// to check username exist or not
 		
 phoneBookRepo.findAll().equals(user.getName());
 	 System.out.println("inside service class "+phoneBookRepo.findAll().equals(user.getName()));
@@ -109,7 +108,6 @@ phoneBookRepo.findAll().equals(user.getName());
 		
 		contactsrepo.save(contacts);
 
-	
 	}
 
 
@@ -137,25 +135,18 @@ phoneBookRepo.findAll().equals(user.getName());
 		
 	}
 
-     @Override
-	public void deleteContacts(int id) {
-     contactsrepo.deleteById(id);		
-	}
-
+	
 
 
 	@Override
 	public UserDetails loadUserByUsername(String phoneNo) throws UsernameNotFoundException {
-		User user = phoneBookRepo.findByPhoneNumber(Long.parseLong(phoneNo));
+		User user = phoneBookRepo.findByPhoneNumber(phoneNo);
         return  new org.springframework.security.core.userdetails.User(String.valueOf(user.getPhoneNumber()), "", new ArrayList<>());
 	}
 
 
 
-	@Override
-	public void deleteMyAccount(User user) {
-		phoneBookRepo.delete(user);
-	}
+	
 
 
 
@@ -195,7 +186,34 @@ phoneBookRepo.findAll().equals(user.getName());
 
 
 
-	
+	public String getPhoneNumber(){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String phoneNumber = null;
+        
+        if(principal instanceof UserDetails){
+            phoneNumber = ((UserDetails)principal).getUsername();
+        }
+        else{
+            phoneNumber = principal.toString();
+          }
+        System.out.println(phoneNumber);
+        return (phoneNumber);
+    }
+
+
+
+	@Override
+	public void saveOrUpdate(int id) {
+     contactsrepo.save(id);		
+	}
+
+
+
+	@Override
+	public void saveOrUpdate(OtpDetails otpDetails) {
+		otpDRepo.save(otpDetails);		
+	}
+
 }
 
 

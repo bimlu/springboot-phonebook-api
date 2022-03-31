@@ -43,18 +43,18 @@ public class OtpDetails {
      private String otp;
     
 	
-
-    @CreatedDate
-    @Column(name = "created", updatable=false , nullable = false)
+    @LastModifiedDate
+    @Column(name = "created",updatable = true , nullable = false)
 	private Date created;
 	
 	//Date newDate = new Date(created.getTime() + 20*60*1000);
 	 
+     @LastModifiedDate
 	 @Column(name = "expire") 
      private Date expire = new Date(System.currentTimeMillis()+(1000*60*20));
 	 
 	 @LastModifiedDate
-	 @Column(name = "updated" ,updatable = false , nullable = false)
+	 @Column(name = "updated" ,updatable = true , nullable = false)
 	 private Date updated;
 
 	public int getId() {

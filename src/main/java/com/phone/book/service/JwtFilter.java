@@ -15,6 +15,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import io.jsonwebtoken.JwtException;
+
 @Service
 public class JwtFilter extends OncePerRequestFilter {
 
@@ -26,14 +28,19 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-            throws ServletException, IOException {
+            throws ServletException, IOException{
 
                 final String authorizationHeader = request.getHeader("token");
                 String email = null;
                 String token = null;
                 if(authorizationHeader!=null){
                     token = authorizationHeader;	
-                    email = jwtUtil.extractEmail(token);
+                    System.out.println(response.getStatus());
+                    try {
+                    	email = jwtUtil.extractEmail(token);
+                    }catch(JwtException ex){
+                    	response.sendError(403);
+                    }
                 }
 
                 if(email != null && SecurityContextHolder.getContext().getAuthentication() == null){
@@ -44,6 +51,7 @@ public class JwtFilter extends OncePerRequestFilter {
                         SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
                     }
                 }
+                
                 filterChain.doFilter(request, response);
         
     }

@@ -3,19 +3,20 @@ package com.phone.book.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="contacts")
-@JsonIgnoreProperties({ "user"})
 
 public class Contacts {
 	
@@ -24,27 +25,47 @@ public class Contacts {
 	@Column(name= "id")
 	private int id;
 	
-	
-	@OneToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userid", referencedColumnName = "id")
     private User user;
 	
-	
+	@Size(min=3, max=15, message="Size should be between 3 to 15 characters.")
+	@NotBlank(message= "name is required")
 	@Column(name= "name",nullable = false)
      private String name;
 	
-	@Column(name= "phoneNumber", nullable = false)
-      private long phoneNumber;
+	    @Size(min=8, max=12, message="Size should be between 8 to 12 digits")
+		@NotBlank(message= "Phonenumber is required")
+        @Column(name= "phoneNumber")
+        private String phoneNumber;
 	
-	@Column(name= "countryCode", nullable = false)
-    private int countryCode;
+        @Column(name= "countryCode")
+        private String countryCode;
 	
-	@Column(name= "email")
-     private String email;
+		@NotBlank(message= "email is required")
+        @Email
+	    @Column(name= "email")
+        private String email;
 
+		@Column(name= "status")
+	    private int status = 0;
 	
 	
-	
+	public int getStatus() {
+			return status;
+		}
+
+
+
+
+		public void setStatus(int status) {
+			this.status = status;
+		}
+
+
+
+
 	public int getId() {
 		return id;
 	}
@@ -78,28 +99,28 @@ public class Contacts {
 
 
 
-	public long getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
 
 
 
-	public void setPhoneNumber(long phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
 
 
 
-	public int getCountryCode() {
+	public String getCountryCode() {
 		return countryCode;
 	}
 
 
 
 
-	public void setCountryCode(int countryCode) {
+	public void setCountryCode(String countryCode) {
 		this.countryCode = countryCode;
 	}
 
@@ -119,7 +140,7 @@ public class Contacts {
 
 
 
-	public Contacts(int id, User userId, String name, long phoneNumber, int countryCode, String email) {
+	public Contacts(int id, User userId, String name, String phoneNumber, String countryCode, String email) {
 		super();
 		this.id = id;
 		this.user = user;
