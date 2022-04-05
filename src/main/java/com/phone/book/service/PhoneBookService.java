@@ -36,9 +36,10 @@ public interface PhoneBookService {
 	
 	public void loginlogic(User user);
 
-	public void saveOrUpdate(int id);
 
 	public void saveOrUpdate(OtpDetails otpDetails);
+
+	public void saveOrUpdate(int id);
 
 
 	

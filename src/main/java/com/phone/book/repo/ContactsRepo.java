@@ -14,8 +14,17 @@ public interface ContactsRepo extends JpaRepository<Contacts, Integer> {
 
 	void save(int id);
 
+	boolean existsByphoneNumber(String phoneNumber);
+
+	boolean existsByEmail(String email);
 
 
+
+	boolean existsByStatus(int status);
+
+
+   
+  
 	
 	
 }

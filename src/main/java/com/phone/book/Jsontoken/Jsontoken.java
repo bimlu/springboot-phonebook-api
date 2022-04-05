@@ -1,10 +1,23 @@
 package com.phone.book.Jsontoken;
 
+import com.phone.book.entity.User;
+
 public class Jsontoken {
 private String token;
 private int code;
 private int statuscode;
 private String message;
+private User data;
+
+
+
+public User getData() {
+	return data;
+}
+
+public void setData(User data) {
+	this.data = data;
+}
 
 public String getToken() {
 	return token;

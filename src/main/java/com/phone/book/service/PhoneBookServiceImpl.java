@@ -59,7 +59,7 @@ public class PhoneBookServiceImpl implements PhoneBookService, UserDetailsServic
 		 Random rnd = new Random();
 		    int number = rnd.nextInt(999999);
 
-		 System.out.println("OTP in service: "+String.format("%06d", number)); 
+		// System.out.println("OTP in service: "+String.format("%06d", number)); 
 		 String otp=String.format("%06d", number);
 		 return otp;
 		
@@ -203,15 +203,15 @@ phoneBookRepo.findAll().equals(user.getName());
 
 
 	@Override
-	public void saveOrUpdate(int id) {
-     contactsrepo.save(id);		
+	public void saveOrUpdate(OtpDetails otpDetails) {
+		otpDRepo.save(otpDetails);		
 	}
 
 
 
 	@Override
-	public void saveOrUpdate(OtpDetails otpDetails) {
-		otpDRepo.save(otpDetails);		
+	public void saveOrUpdate(int id) {
+      contactsrepo.save(id);		
 	}
 
 }

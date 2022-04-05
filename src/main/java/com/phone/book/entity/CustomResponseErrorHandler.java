@@ -17,18 +17,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class CustomResponseErrorHandler {
 
-	
-	@ExceptionHandler(IOException.class)
-	public ResponseEntity<Map<String, String>> handleException(
-	        Exception e) throws IOException {
-	    Map<String, String> errorResponse = new HashMap<>();
-	    errorResponse.put("message", e.getLocalizedMessage());
-	    errorResponse.put("status", HttpStatus.INTERNAL_SERVER_ERROR.toString());
-
-	    return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-	
-	
+ 	
 	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
 	public ResponseEntity<Map<String, String>> handleException(
 			
@@ -47,20 +36,7 @@ public class CustomResponseErrorHandler {
 	}
 	
 	
-	/*
-	 * @ExceptionHandler(ServiceUnavailableException.class) public
-	 * ResponseEntity<Map<String, String>> handleException(
-	 * ServiceUnavailableException e) throws AccessDeniedException { Map<String,
-	 * String> errorResponse = new HashMap<>();
-	 * 
-	 * errorResponse.put("message", e.getLocalizedMessage());
-	 * errorResponse.put("status", HttpStatus.GATEWAY_TIMEOUT.toString());
-	 * 
-	 * return new ResponseEntity<>(errorResponse, HttpStatus.GATEWAY_TIMEOUT);
-	 * 
-	 * 
-	 * }
-	 */
+	
 	
 	
 }

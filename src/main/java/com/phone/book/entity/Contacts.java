@@ -14,9 +14,13 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="contacts")
+
+@JsonIgnoreProperties({ "status" })
+
 
 public class Contacts {
 	
@@ -49,7 +53,7 @@ public class Contacts {
         private String email;
 
 		@Column(name= "status")
-	    private int status = 0;
+	    private int status;
 	
 	
 	public int getStatus() {

@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.ExpiredJwtException;
 
 @Service
 public class JwtFilter extends OncePerRequestFilter {
@@ -28,18 +28,21 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-            throws ServletException, IOException{
+            throws ServletException, IOException {
 
                 final String authorizationHeader = request.getHeader("token");
                 String email = null;
                 String token = null;
                 if(authorizationHeader!=null){
                     token = authorizationHeader;	
-                    System.out.println(response.getStatus());
                     try {
-                    	email = jwtUtil.extractEmail(token);
-                    }catch(JwtException ex){
-                    	response.sendError(403);
+                        email = jwtUtil.extractEmail(token);
+                    }catch(ExpiredJwtException ex) {
+                    	response.setContentType("application/json");
+                    	response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                		response.getOutputStream().println("{\"error\": \"Token Expired\"}");
+                		response.getOutputStream().close();
+                		return;
                     }
                 }
 
@@ -51,7 +54,6 @@ public class JwtFilter extends OncePerRequestFilter {
                         SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
                     }
                 }
-                
                 filterChain.doFilter(request, response);
         
     }

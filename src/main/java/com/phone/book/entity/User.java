@@ -28,7 +28,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name="User", uniqueConstraints = @UniqueConstraint(columnNames = {"phoneNumber"}))
 @EntityListeners(AuditingEntityListener.class)
-//@JsonIgnoreProperties({ "status", "created","updated","otpDetails","contacts"})
+@JsonIgnoreProperties({ "status", "created","updated","id"})
 
 public class User {
 	
