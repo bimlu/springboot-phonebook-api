@@ -1,0 +1,418 @@
+{
+  "info": {
+    "_postman_id": "fc373ef5-60e2-4cb7-af55-f9a545f6fa2f",
+    "name": "PhoneBook",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "20894262"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\"name\":\"Akanksha\",\n\"email\":\"Akki@gmail.com\",\n\"countryCode\":\"+91\",\n\"phoneNumber\":\"8876543201\",\n\"passCode\":\"4444\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9082/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9082",
+          "path": [
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Check OTP",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\"countryCode\":\"+91\",\n\"phoneNumber\":\"8181818181\",\n\"otp\":\"993069\"\n}\n\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9082/checkOTP",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9082",
+          "path": [
+            "checkOTP"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "https://reqres.in/api/users/306",
+          "protocol": "https",
+          "host": [
+            "reqres",
+            "in"
+          ],
+          "path": [
+            "api",
+            "users",
+            "306"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "login",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\"countryCode\":\"+91\",\n\"phoneNumber\":\"8876543201\",\n\"passCode\":\"4444\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9082/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9082",
+          "path": [
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "all contact",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "token",
+            "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4OTIxMTIzNDQzIiwiZXhwIjoxNjQ5MTc5Njc2LCJpYXQiOjE2NDkxNDM2NzZ9.hZjJzh5enDEq4lyF187M8kPyIUpunObBoXm9X5LAaoY",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:9082/allContacts",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9082",
+          "path": [
+            "allContacts"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "add Contacts",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "token",
+            "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4MTgxODE4MTgxIiwiZXhwIjoxNjUxMzI0NzcxLCJpYXQiOjE2NTEyODg3NzF9.ae3TOTen1zRMmkfRZvP7wg05BPQ9pr9WaRKGnCuymRE",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\"name\":\"Sara\",\n\"email\":\"Sara@gmail.com\",\n\"countryCode\":\"+91\",\n\"phoneNumber\":\"9010101010\"\n}\n  ",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9082/addContacts",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9082",
+          "path": [
+            "addContacts"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "edit details",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "token",
+            "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4OTc2NTY0MzEyIiwiZXhwIjoxNjQ5MDg5MDg4LCJpYXQiOjE2NDkwNTMwODh9.q32MGWgR4KgORjPfdaSW6GiLmCIyZjKKJbEW-ZSiwOU",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\n\"name\": \"Ram\",\n\"email\":\"ram123@gmail.com\"\n\n}\n\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9082/editDetails",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9082",
+          "path": [
+            "editDetails"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "EditContact",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "token",
+            "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5MTIzMzI4OTg5IiwiZXhwIjoxNjQ4ODI2MTQ0LCJpYXQiOjE2NDg3OTAxNDR9.2KJ4g8QccRv0kXkEwEKNG2k6dOSbt-bVnLOTfvh-eyQ",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n \n\"name\":\"minakshi\",\n\"email\":\"minaksi123@gmail.com\",\n\"countryCode\":\"+91\",\n\"phoneNumber\":\"8479837329\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9082/editContacts/4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9082",
+          "path": [
+            "editContacts",
+            "4"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ChangePhoneNumber",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "token",
+            "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5ODc2NTQzMjEwIiwiZXhwIjoxNjQ5MjYyNjU2LCJpYXQiOjE2NDkyMjY2NTZ9.UwmaxMiocj5p8SvdvE--_LmkMfVg2t-KtEAWcAcic6Y",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "    {\n\n\"phoneNumber\":\"9128282871\"\n\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9082/ChangePhoneNumber",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9082",
+          "path": [
+            "ChangePhoneNumber"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "deleteMyAccount",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PUT",
+        "header": [
+          {
+            "key": "token",
+            "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4NDE3NTkxNDE2IiwiZXhwIjoxNjQ4NTcyODcwLCJpYXQiOjE2NDg1MzY4NzB9.Msjl8M-EjDumeRVOTxMuUv-sk0YMyP3sNmmA8ztepxc",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9082/deleteMyAccount",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9082",
+          "path": [
+            "deleteMyAccount"
+          ],
+          "query": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4OTU0OTg4OTg5IiwiZXhwIjoxNjQ4MjE4MjUzLCJpYXQiOjE2NDgxODIyNTN9.Kgs2Is5NYsE73Saxbn23w1ssy9DgSlertSY6gDAiTV8",
+              "disabled": true
+            },
+            {
+              "key": "status",
+              "value": "1",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "View contact detailsId",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "token",
+            "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTExMTExMTExIiwiZXhwIjoxNjQ5MjYzMDg3LCJpYXQiOjE2NDkyMjcwODd9.0t0PD6wdnblP3oHOKqmainEq05Nplryien7ankRsohI",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9082/viewContactDetails/5",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9082",
+          "path": [
+            "viewContactDetails",
+            "5"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "deleteContact By Id",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "token",
+            "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4OTc2NTY0MzEyIiwiZXhwIjoxNjQ5MDk0MjY4LCJpYXQiOjE2NDkwNTgyNjh9.qH5RWfx_OS3Vzqv6PdxaWk-h3-fzCl6WmDoTg_8LOI0",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:9082/deleteContact/3",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9082",
+          "path": [
+            "deleteContact",
+            "3"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

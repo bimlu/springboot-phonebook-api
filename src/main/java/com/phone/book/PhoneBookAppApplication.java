@@ -9,8 +9,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableJpaAuditing
 public class PhoneBookAppApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PhoneBookAppApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(PhoneBookAppApplication.class, args);
+    }
 
 }

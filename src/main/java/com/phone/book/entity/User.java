@@ -1,204 +1,194 @@
 package com.phone.book.entity;
 
-import java.util.Date;
-import java.util.Set;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.Date;
+import java.util.Set;
 
 @Entity
-@Table(name="User", uniqueConstraints = @UniqueConstraint(columnNames = {"phoneNumber"}))
+@Table(name = "User", uniqueConstraints = @UniqueConstraint(columnNames = {"phoneNumber"}))
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties({ "status", "created","updated","id"})
+@JsonIgnoreProperties({"status", "created", "updated", "id"})
 
 public class User {
-	
-	
-    @Id 
+
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name= "id")
+    @Column(name = "id")
     private int id;
-    
-    @Size(min=3, max=10, message= "size should be between 3 to 10 digits")
-	@Column(name= "name")
-    @NotBlank(message="name is required")
+
+    @Size(min = 3, max = 10, message = "size should be between 3 to 10 digits")
+    @Column(name = "name")
+    @NotBlank(message = "name is required")
     private String name;
-	
+
     @Email
-	@NotBlank(message = "email is required")
-	@Column(name= "email")
+    @NotBlank(message = "email is required")
+    @Column(name = "email")
     private String email;
-	
-	//@NotBlank(message = "countryCode is required")
-	@Column(name= "countryCode")
+
+    //@NotBlank(message = "countryCode is required")
+    @Column(name = "countryCode")
     private String countryCode;
-  
-    @Size(min=8, max=12, message= "size should  be between 8 to 12 digits.")
+
+    @Size(min = 8, max = 12, message = "size should  be between 8 to 12 digits.")
     @NotBlank(message = "phoneNumber is required")
-	@Column(name= "phoneNumber", unique = true)
-	private String phoneNumber;
-	
-    @Size(min=4, max=10, message= "Size should be between 4 to 10 digits")
+    @Column(name = "phoneNumber", unique = true)
+    private String phoneNumber;
+
+    @Size(min = 4, max = 10, message = "Size should be between 4 to 10 digits")
     @NotBlank(message = "passCode is required")
-	@Column(name= "passCode")
-	private String passCode;
-	
-	//@NotBlank(message = "status is required")
-	@Column(name= "status")
+    @Column(name = "passCode")
+    private String passCode;
+
+    //@NotBlank(message = "status is required")
+    @Column(name = "status")
     private int status = 0;
-   
+
     @CreatedDate
-    @Column(name = "created", updatable=false)
+    @Column(name = "created", updatable = false)
     private Date created;
-    
+
     @LastModifiedDate
-    @Column(name = "updated" ,updatable = false)
+    @Column(name = "updated", updatable = false)
     private Date updated;
-    
+
     @JsonIgnore
     @OneToOne(mappedBy = "user")
     private OtpDetails otpDetails;
-    
+
     @JsonIgnore
     @OneToMany(mappedBy = "user")
-  	 private Set<Contacts> contacts;
-
-    
-	public int getId() {
-		return id;
-	}
-
-   public void setId(int id) {
-		this.id = id;
-	}
+    private Set<Contacts> contacts;
 
 
-  public String getName() {
-		return name;
-	}
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
 
-  public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
- public String getEmail() {
-		return email;
-	}
 
-  public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public String getCountryCode() {
-		return countryCode;
-	}
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
 
     public void setCountryCode(String countryCode) {
-		this.countryCode = countryCode;
-	}
+        this.countryCode = countryCode;
+    }
 
     public String getPhoneNumber() {
-		return phoneNumber;
-	}
+        return phoneNumber;
+    }
 
-   public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
-   public String getPassCode() {
-		return passCode;
-	}
+    public String getPassCode() {
+        return passCode;
+    }
 
-   public void setPassCode(String passCode) {
-		this.passCode = passCode;
-	}
-   public int getStatus() {
-		return status;
-	}
-   public void setStatus(int status) {
-		this.status = status;
-	}
+    public void setPassCode(String passCode) {
+        this.passCode = passCode;
+    }
 
-  public Date getCreated() {
-		return created;
-	}
-  public void setCreated(Date created) {
-		this.created = created;
-	}
+    public int getStatus() {
+        return status;
+    }
 
-   public Date getUpdated() {
-		return updated;
-	}
-  public void setUpdated(Date updated) {
-		this.updated = updated;
-	}
-  	  
-	 
-	 
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
-	public Set<Contacts> getContacts() {
-	return contacts;
-}
+    public Date getCreated() {
+        return created;
+    }
 
-public void setContacts(Set<Contacts> contacts) {
-	this.contacts = contacts;
-}
+    public void setCreated(Date created) {
+        this.created = created;
+    }
 
-	public OtpDetails getOtpDetails() {
-	return otpDetails;
-}
+    public Date getUpdated() {
+        return updated;
+    }
 
-public void setOtpDetails(OtpDetails otpDetails) {
-	this.otpDetails = otpDetails;
-}
+    public void setUpdated(Date updated) {
+        this.updated = updated;
+    }
 
-	
 
-  @Override
-public String toString() {
-	return "User [id=" + id + ", name=" + name + ", email=" + email + ", countryCode=" + countryCode + ", phoneNumber="
-			+ phoneNumber + ", passCode=" + passCode + ", status=" + status + ", created=" + created + ", updated="
-			+ updated + ", otpDetails=" + otpDetails + "]";
-}
+    public Set<Contacts> getContacts() {
+        return contacts;
+    }
 
-  
-public User(int id, String name, String email, String countryCode, String phoneNumber, String passCode, int status,
-		Date created, Date updated, OtpDetails otpDetails) {
-	super();
-	this.id = id;
-	this.name = name;
-	this.email = email;
-	this.countryCode = countryCode;
-	this.phoneNumber = phoneNumber;
-	this.passCode = passCode;
-	this.status = status;
-	this.created = created;
-	this.updated = updated;
-	this.otpDetails = otpDetails;
-}
+    public void setContacts(Set<Contacts> contacts) {
+        this.contacts = contacts;
+    }
 
-public User() {}
-   
+    public OtpDetails getOtpDetails() {
+        return otpDetails;
+    }
+
+    public void setOtpDetails(OtpDetails otpDetails) {
+        this.otpDetails = otpDetails;
+    }
+
+
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", name=" + name + ", email=" + email + ", countryCode=" + countryCode + ", phoneNumber="
+                + phoneNumber + ", passCode=" + passCode + ", status=" + status + ", created=" + created + ", updated="
+                + updated + ", otpDetails=" + otpDetails + "]";
+    }
+
+
+    public User(int id, String name, String email, String countryCode, String phoneNumber, String passCode, int status,
+                Date created, Date updated, OtpDetails otpDetails) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.countryCode = countryCode;
+        this.phoneNumber = phoneNumber;
+        this.passCode = passCode;
+        this.status = status;
+        this.created = created;
+        this.updated = updated;
+        this.otpDetails = otpDetails;
+    }
+
+    public User() {
+    }
+
 }
 
 

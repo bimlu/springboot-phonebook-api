@@ -1,30 +1,31 @@
 package com.phone.book.repo;
 
+import com.phone.book.entity.Contacts;
+import com.phone.book.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.phone.book.entity.Contacts;
-import com.phone.book.entity.User;
+import java.util.ArrayList;
+
 @Repository
 public interface ContactsRepo extends JpaRepository<Contacts, Integer> {
-	 
-	 User findByName(String name);
 
-	void save(User user);
+    User findByName(String name);
 
-	void save(int id);
+    void save(User user);
 
-	boolean existsByphoneNumber(String phoneNumber);
+    void save(int id);
 
-	boolean existsByEmail(String email);
+    boolean existsByphoneNumber(String phoneNumber);
 
-
-
-	boolean existsByStatus(int status);
+    boolean existsByEmail(String email);
 
 
-   
-  
-	
-	
+    boolean existsByStatus(int status);
+
+    ArrayList<Contacts> findByUserAndStatusOrderByIdDesc(User user, int status);
+
+    Contacts findByIdAndUser(int id, User user);
+
+
 }
